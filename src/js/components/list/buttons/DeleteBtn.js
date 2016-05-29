@@ -1,16 +1,16 @@
 import React from 'react';
 
-class DoneBtn extends React.Component{
+class DeleteBtn extends React.Component{
     render(){
         return(
-            <span className='glyphicon glyphicon-ok pull-right'
+            <span className='glyphicon glyphicon-trash pull-right'
                 onClick={this.props.clickHandler}></span>
         );
     }
 }
 
-DoneBtn.propTypes = {
+DeleteBtn.propTypes = {
     clickHandler: React.PropTypes.func
 }
 
-export default DoneBtn;
+export default DeleteBtn;
