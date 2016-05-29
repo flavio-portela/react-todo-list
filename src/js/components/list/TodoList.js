@@ -14,9 +14,7 @@ class TodoList extends React.Component
         super();
         this._onListChange = this._onListChange.bind(this);
         this.state = _getList();
-    }
 
-    componentWillMount(){
         // Add change listeners
         TodoStore.addChangeListener(this._onListChange);
     }
