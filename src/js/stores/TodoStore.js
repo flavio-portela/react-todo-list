@@ -27,6 +27,12 @@ const _finishItem = (id) =>{
     });
 }
 
+const _deleteItem = (id) =>{
+    _.remove(_list, (item) =>{
+        return item.id == id;
+    });
+}
+
 const TodoStore = Object.assign(EventEmitter.prototype, {
     emitChange(){
         this.emit(CHANGE_EVENT);
@@ -51,6 +57,9 @@ const TodoStore = Object.assign(EventEmitter.prototype, {
                 break;
             case TodoConstants.FINISH_ITEM:
                 _finishItem(action.id);
+                break;
+            case TodoConstants.DELETE_ITEM:
+                _deleteItem(action.id);
                 break;
         }
         TodoStore.emitChange();
