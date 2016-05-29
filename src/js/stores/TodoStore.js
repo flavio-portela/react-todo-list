@@ -6,11 +6,11 @@ import _ from 'lodash';
 const CHANGE_EVENT = 'list_updated';
 
 var _list = [
-    {id: 1, description: 'This is the first item', inProgress: true}
+    {id: _.uniqueId(), description: 'This is the first item', inProgress: true}
 ];
 
 const _addNewItem = (description) =>{
-    let id = ( _list.reduce((x, y) => { return (x.id > y.id) ? x.id : y.id }, 0) ) + 1;
+    let id = _.uniqueId();
     _list.push({
         id,
         description,
