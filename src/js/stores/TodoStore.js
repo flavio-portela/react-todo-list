@@ -5,21 +5,17 @@ import _ from 'lodash';
 
 const CHANGE_EVENT = 'list_updated';
 
-var _list = [
-    {id: _.uniqueId(), description: 'This is the first item', inProgress: true}
-];
-
-const _addNewItem = (description) =>{
+const _addNewItem = (description, list) =>{
     let id = _.uniqueId();
-    _list.push({
+    list.push({
         id,
         description,
         inProgress: true
     });
 }
 
-const _finishItem = (id) =>{
-    _list.map((item)=>{
+const _finishItem = (id, list) =>{
+    list.map((item)=>{
         if(item.id == id){
             item.inProgress = false;
         }
@@ -27,43 +23,49 @@ const _finishItem = (id) =>{
     });
 }
 
-const _deleteItem = (id) =>{
-    _.remove(_list, (item) =>{
+const _deleteItem = (id, list) =>{
+    _.remove(list, (item) =>{
         return item.id == id;
     });
 }
 
-const TodoStore = Object.assign(EventEmitter.prototype, {
-    emitChange(){
-        this.emit(CHANGE_EVENT);
-    },
+class TodoStore extends EventEmitter{
+    constructor(){
+        super();
+        this._list = [
+            {id: _.uniqueId(), description: 'This is the first item', inProgress: true}
+        ];
+    }
 
     addChangeListener(callback){
         this.on(CHANGE_EVENT, callback);
-    },
+    }
 
     removeChangeListener(callback){
         this.removeChangeListener(CHANGE_EVENT, callback);
-    },
+    }
 
     getList(){
-        return _list;
-    },
+        return this._list;
+    }
 
-    dispatcherIndex: register(function(action){
+    handleActions(action){
         switch(action.actionType){
             case TodoConstants.NEW_ITEM:
-                _addNewItem(action.description);
+                _addNewItem(action.description, this._list);
                 break;
             case TodoConstants.FINISH_ITEM:
-                _finishItem(action.id);
+                _finishItem(action.id, this._list);
                 break;
             case TodoConstants.DELETE_ITEM:
-                _deleteItem(action.id);
+                _deleteItem(action.id, this._list);
                 break;
         }
-        TodoStore.emitChange();
-    })
-});
+        this.emit(CHANGE_EVENT)
+    }
+}
 
-export default TodoStore;
+const todoStore = new TodoStore;
+register(todoStore.handleActions.bind(todoStore));
+
+export default todoStore;
