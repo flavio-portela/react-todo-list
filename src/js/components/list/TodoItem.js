@@ -1,6 +1,5 @@
 import React from 'react';
-import DoneBtn from './buttons/DoneBtn';
-import DeleteBtn from './buttons/DeleteBtn';
+import IconBtn from './buttons/IconBtn';
 import TodoActions from '../../actions/TodoActions';
 
 const classNames = require('classnames');
@@ -25,8 +24,10 @@ class TodoItem extends React.Component{
             <div className={this._getClassName(this.props.item.inProgress)}>
                 <div className='item__content'>
                     <span className='item__content__text'>{this.props.item.description}</span>
-                    <DoneBtn clickHandler={this._finishItem.bind(this)}/>
-                    <DeleteBtn clickHandler={this._deleteIten.bind(this)} />
+                    <IconBtn clickHandler={this._finishItem.bind(this)}
+                        iconClass='ok'/>
+                    <IconBtn clickHandler={this._deleteIten.bind(this)}
+                        iconClass='trash'/>
                 </div>
             </div>
         );
