@@ -25,11 +25,8 @@ class AddItemForm extends React.Component{
         }
         // add new item
         TodoActions.newItem(text);
-
         // clear form
-        this.setState({
-            text: ''
-        });
+        this.setState({ text: '' });
     }
 
     render(){
