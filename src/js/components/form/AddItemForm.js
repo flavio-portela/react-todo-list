@@ -1,20 +1,20 @@
 import React from 'react';
 import TodoActions from '../../actions/TodoActions';
 
+const _setText = (text)=>{
+    return {text: text}
+}
+
 class AddItemForm extends React.Component{
     constructor(props){
         super();
         this._handleTextChange = this._handleTextChange.bind(this);
         this._handleSubmit = this._handleSubmit.bind(this);
-        this.state = {
-            text: ''
-        };
+        this.state = _setText('');
     }
 
     _handleTextChange(e){
-        this.setState({
-            text: e.target.value
-        });
+        this.setState(_setText(e.target.value));
     }
 
     _handleSubmit(e){
@@ -26,7 +26,7 @@ class AddItemForm extends React.Component{
         // add new item
         TodoActions.newItem(text);
         // clear form
-        this.setState({ text: '' });
+        this.setState(_setText(''));
     }
 
     render(){
