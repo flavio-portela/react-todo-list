@@ -4,14 +4,16 @@ import TodoStore from '../../stores/TodoStore';
 import TodoItem from './TodoItem';
 import AddItemForm from '../form/AddItemForm';
 
+const _getList = ()=>{
+    return {list: TodoStore.getList()};
+}
+
 class TodoList extends React.Component
 {
     constructor(props){
         super();
         this._onListChange = this._onListChange.bind(this);
-        this.state = {
-            list: TodoStore.getList()
-        };
+        this.state = _getList();
     }
 
     componentWillMount(){
@@ -25,9 +27,7 @@ class TodoList extends React.Component
     }
 
     _onListChange(){
-        this.setState({
-            list: TodoStore.getList()
-        });
+        this.setState(_getList());
     }
 
     render(){
@@ -36,9 +36,7 @@ class TodoList extends React.Component
         });
         return(
             <div className='row'>
-                <div className='col-md-12'>
-                    {list}
-                </div>
+                <div className='col-md-12'> {list} </div>
                 <AddItemForm />
             </div>
         );
