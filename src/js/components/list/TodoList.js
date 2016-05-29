@@ -12,7 +12,9 @@ class TodoList extends React.Component
         this.state = {
             list: TodoStore.getList()
         };
+    }
 
+    componentWillMount(){
         // Add change listeners
         TodoStore.addChangeListener(this._onListChange);
     }
