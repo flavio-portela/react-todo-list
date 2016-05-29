@@ -4,24 +4,24 @@ import TodoActions from '../../actions/TodoActions';
 
 const classNames = require('classnames');
 
-class TodoItem extends React.Component{
+class TodoItem extends React.Component
+{
     _finishItem(){
-        console.log(this.props.item);
+        // do not trigger action if item is already done
+        if(!this.props.item.inProgress){
+            return;
+        }
         TodoActions.finishItem(this.props.item.id);
     }
 
     _deleteIten(){
-        console.log(this.props.item);
         TodoActions.deleteItem(this.props.item.id);
     }
 
-    _getClassName(inProgress){
-        return classNames('item', {'item--done': !inProgress});
-    }
-
     render(){
+        let getClassName = (inProgress) => classNames('item', {'item--done': !inProgress});
         return(
-            <div className={this._getClassName(this.props.item.inProgress)}>
+            <div className={getClassName(this.props.item.inProgress)}>
                 <div className='item__content'>
                     <span className='item__content__text'>{this.props.item.description}</span>
                     <IconBtn clickHandler={this._finishItem.bind(this)}
