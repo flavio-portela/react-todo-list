@@ -8,8 +8,6 @@ const _setText = (text)=>{
 class AddItemForm extends React.Component{
     constructor(props){
         super();
-        this._handleTextChange = this._handleTextChange.bind(this);
-        this._handleSubmit = this._handleSubmit.bind(this);
         this.state = _setText('');
     }
 
@@ -32,14 +30,14 @@ class AddItemForm extends React.Component{
     render(){
         return(
             <div className='col-md-12 form_container'>
-                <form className='' onSubmit={this._handleSubmit}>
+                <form className='' onSubmit={this._handleSubmit.bind(this)}>
                     <div className='form-group'>
                         <input type='text'
                             maxlength='10'
                             placeholder='Add new item'
                             value={this.state.text}
                             className='form-control'
-                            onChange={this._handleTextChange}/>
+                            onChange={this._handleTextChange.bind(this)}/>
 
                         <input type='submit'
                             className='form-control btn btn-primary'
