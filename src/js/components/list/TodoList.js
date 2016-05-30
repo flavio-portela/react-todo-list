@@ -4,7 +4,7 @@ import TodoStore from '../../stores/TodoStore';
 import TodoItem from './TodoItem';
 import AddItemForm from '../form/AddItemForm';
 
-const _getList = ()=>{
+const _getList = () => {
     return {list: TodoStore.getList()};
 }
 
