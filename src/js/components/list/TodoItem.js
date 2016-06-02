@@ -8,20 +8,20 @@ class TodoItem extends React.Component
 {
     _finishItem(){
         // do not trigger action if item is already done
-        if(!this.props.item.inProgress){
+        if(this.props.item.done){
             return;
         }
-        TodoActions.finishItem(this.props.item.id);
+        TodoActions.finishItem(this.props.item._id);
     }
 
     _deleteIten(){
-        TodoActions.deleteItem(this.props.item.id);
+        TodoActions.deleteItem(this.props.item._id);
     }
 
     render(){
-        let getClassName = (inProgress) => classNames('item', {'item--done': !inProgress});
+        let getClassName = (done) => classNames( 'item', { 'item--done': done } );
         return(
-            <div className={getClassName(this.props.item.inProgress)}>
+            <div className={getClassName(this.props.item.done)}>
                 <div className='item__content'>
                     <span className='item__content__text'>{this.props.item.description}</span>
                     <IconBtn clickHandler={this._finishItem.bind(this)}

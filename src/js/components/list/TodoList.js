@@ -1,5 +1,6 @@
 import React from 'react';
 import TodoStore from '../../stores/TodoStore';
+import TodoActions from '../../actions/TodoActions';
 
 import TodoItem from './TodoItem';
 import AddItemForm from '../form/AddItemForm';
@@ -14,6 +15,7 @@ class TodoList extends React.Component
         super();
         this._onListChange = this._onListChange.bind(this);
         this.state = _getList();
+        TodoActions.getItems();
 
         // Add change listeners
         TodoStore.addChangeListener(this._onListChange);
@@ -30,7 +32,7 @@ class TodoList extends React.Component
 
     render(){
         let list = this.state.list.map(item => {
-            return <TodoItem key={item.id} item={item} />
+            return <TodoItem key={item._id} item={item} />
         });
         return(
             <div className='row'>

@@ -5,12 +5,11 @@ const server = new Hapi.Server();
 server.connection({host: 'localhost',port: 8080});
 
 const plugins = [
-  {
-    register: require('inert')
-  }
+  require('inert'),
+  require('./plugins/api')
 ];
 
-server.register(plugins, (err) => {
+server.register( plugins, (err) => {
   if(err){
     throw err;
   }
@@ -30,7 +29,7 @@ server.register(plugins, (err) => {
   server.route({
     method: 'GET',
     path: '/{param*}',
-    handler: function(request, reply){
+    handler: (request, reply) => {
       reply.file('dist/index.html');
     }
   });

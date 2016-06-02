@@ -5,36 +5,25 @@ import _ from 'lodash';
 
 const CHANGE_EVENT = 'list_updated';
 
-const _addNewItem = (description, list) =>{
-    let id = _.uniqueId();
-    list.push({
-        id,
-        description,
-        inProgress: true
-    });
-}
-
-const _finishItem = (id, list) =>{
-    list.map((item)=>{
-        if(item.id == id){
-            item.inProgress = false;
+const _updateTodo = (item, list ) => {
+    list.map((todo) => {
+        if(todo._id == item._id){
+            todo.done = item.done;
         }
-        return item;
+        return todo;
     });
 }
 
-const _deleteItem = (id, list) =>{
+const _deleteItem = (_id, list) =>{
     _.remove(list, (item) =>{
-        return item.id == id;
+        return item._id == _id;
     });
 }
 
 class TodoStore extends EventEmitter{
     constructor(){
         super();
-        this._list = [
-            {id: _.uniqueId(), description: 'This is the first item', inProgress: true}
-        ];
+        this._list = [];
     }
 
     addChangeListener(callback){
@@ -51,14 +40,17 @@ class TodoStore extends EventEmitter{
 
     handleActions(action){
         switch(action.actionType){
+            case TodoConstants.GET_ITEMS:
+                this._list = action.todos;
+                break;
             case TodoConstants.NEW_ITEM:
-                _addNewItem(action.description, this._list);
+                this._list.push(action.todo);
                 break;
             case TodoConstants.FINISH_ITEM:
-                _finishItem(action.id, this._list);
+                _updateTodo(action.todo, this._list);
                 break;
             case TodoConstants.DELETE_ITEM:
-                _deleteItem(action.id, this._list);
+                _deleteItem(action._id, this._list);
                 break;
         }
         this.emit(CHANGE_EVENT)
