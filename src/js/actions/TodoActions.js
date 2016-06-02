@@ -1,10 +1,13 @@
 import TodoConstants from '../constants/TodoConstants';
 import {dispatch, register} from '../dispatcher/AppDispatcher';
 
+
 export default{
+
     getItems(){
         actionType: TodoConstants.GET_ITEMS
-    }
+    },
+
     newItem(item){
         dispatch({
             actionType: TodoConstants.NEW_ITEM,
