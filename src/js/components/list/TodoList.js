@@ -22,6 +22,7 @@ class TodoList extends React.Component
 
     componentDidMount(){
         if(!this.state.todos.length){
+            console.log('Calling action getTodos...');
             TodoActions.getTodos();
         }
     }
@@ -31,6 +32,7 @@ class TodoList extends React.Component
     }
 
     _onTodosChange(){
+        console.log('Updating state from view..');
         this.setState(_getTodos());
     }
 

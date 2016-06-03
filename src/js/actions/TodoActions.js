@@ -5,6 +5,7 @@ import axios from 'axios';
 export default{
 
     getTodos(){
+        console.log('Executing ajax call from action');
         axios.get('/api/todos').then((response) => {
             dispatch({
                 actionType: TodoConstants.GET_ITEMS,
@@ -16,6 +17,7 @@ export default{
     },
 
     addTodo(text){
+        console.log('Executing ajax call from action');
         axios.post('/api/todos', {
             text: text
         }).then((response) => {
@@ -29,6 +31,7 @@ export default{
     },
 
     deleteTodo(_id){
+        console.log('Executing ajax call from action');
         axios({
             method: 'DELETE',
             url: '/api/todos',

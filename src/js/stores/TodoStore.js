@@ -53,6 +53,7 @@ class TodoStore extends EventEmitter{
                 _deleteItem(action._id, this._list);
                 break;
         }
+        console.log('Emit change event from Store...');
         this.emit(CHANGE_EVENT)
     }
 }

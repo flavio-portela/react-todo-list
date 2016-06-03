@@ -11,10 +11,12 @@ class TodoItem extends React.Component
         if(this.props.todo.done){
             return;
         }
+        console.log('Calling action finishTodo...');
         TodoActions.finishTodo(this.props.todo._id);
     }
 
     _deleteTodo(){
+        console.log('Calling action deleteTodo...');
         TodoActions.deleteTodo(this.props.todo._id);
     }
 
