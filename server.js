@@ -2,7 +2,7 @@ const Hapi = require('hapi');
 const Path = require('path');
 
 const server = new Hapi.Server();
-server.connection({host: 'localhost',port: 8080});
+server.connection({host: 'localhost',port: 3000});
 
 const plugins = [
   require('inert'),
