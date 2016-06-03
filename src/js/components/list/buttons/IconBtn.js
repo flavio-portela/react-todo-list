@@ -4,8 +4,7 @@ class IconBtn extends React.Component{
     render(){
         let icon = `glyphicon glyphicon-${this.props.iconClass} pull-right`;
         return(
-            <span className={icon}
-                onClick={this.props.clickHandler}></span>
+            <span className={ icon } onClick={ this.props.clickHandler} ></span>
         );
     }
 }

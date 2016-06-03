@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export default{
 
-    getItems(){
+    getTodos(){
         axios.get('/api/todos').then((response) => {
             dispatch({
                 actionType: TodoConstants.GET_ITEMS,
@@ -15,7 +15,7 @@ export default{
         });
     },
 
-    newItem(text){
+    addTodo(text){
         axios.post('/api/todos', {
             text: text
         }).then((response) => {
@@ -28,7 +28,7 @@ export default{
         });
     },
 
-    deleteItem(_id){
+    deleteTodo(_id){
         axios({
             method: 'DELETE',
             url: '/api/todos',
@@ -46,7 +46,7 @@ export default{
 
     },
 
-    finishItem(_id){
+    finishTodo(_id){
         axios.patch('/api/todos', {
             _id: _id,
             done: true

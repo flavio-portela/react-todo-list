@@ -5,41 +5,43 @@ import TodoActions from '../../actions/TodoActions';
 import TodoItem from './TodoItem';
 import AddItemForm from '../form/AddItemForm';
 
-const _getList = () => {
-    return {list: TodoStore.getList()};
+const _getTodos = () => {
+    return {
+        todos: TodoStore.getList()
+    };
 }
 
 class TodoList extends React.Component
 {
     constructor(props){
         super();
-        this.state = _getList();
-        this._onListChange = this._onListChange.bind(this);
-        TodoStore.addChangeListener(this._onListChange);
+        this._onTodosChange = this._onTodosChange.bind(this);
+        this.state = _getTodos();
+        TodoStore.addChangeListener(this._onTodosChange);
     }
 
     componentDidMount(){
-        if(!this.state.list.length){
-            TodoActions.getItems();
+        if(!this.state.todos.length){
+            TodoActions.getTodos();
         }
     }
 
     componentWillUnmount(){
-        TodoStore.removeChangeListener(this._onListChange);
+        TodoStore.removeChangeListener(this._onTodosChange);
     }
 
-    _onListChange(){
-        this.setState(_getList());
+    _onTodosChange(){
+        this.setState(_getTodos());
     }
 
     render(){
-        let list = this.state.list.map(item => {
-            return <TodoItem key={item._id} item={item} />
+        let todoList = this.state.todos.map( todo => {
+            return <TodoItem key={ todo._id } todo={ todo } />
         });
         return(
             <div className='row'>
                 <div className='col-md-12'>
-                    { list }
+                    { todoList }
                 </div>
                 <AddItemForm />
             </div>
