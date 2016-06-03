@@ -1,9 +1,9 @@
 import React from 'react';
-import TodoStore from '../../stores/TodoStore';
-import TodoActions from '../../actions/TodoActions';
+import TodoStore from '../stores/TodoStore';
+import TodoActions from '../actions/TodoActions';
 
 import TodoItem from './TodoItem';
-import AddItemForm from '../form/AddItemForm';
+import AddItemForm from './form/AddItemForm';
 
 const _getTodos = () => {
     return {

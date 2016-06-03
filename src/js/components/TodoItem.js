@@ -1,6 +1,6 @@
 import React from 'react';
 import IconBtn from './buttons/IconBtn';
-import TodoActions from '../../actions/TodoActions';
+import TodoActions from '../actions/TodoActions';
 
 const classNames = require('classnames');
 
@@ -21,17 +21,18 @@ class TodoItem extends React.Component
     }
 
     render(){
-        let getClassName = (done) => classNames( 'item', { 'item--done': done } );
+        let itemClassName = (done) => classNames( 'item', { 'item--done': done } );
+        let doneBtnClassName = (done) => classNames( 'ok', { 'ok--done': done } );
         return(
-            <div className={ getClassName(this.props.todo.done) }>
+            <div className={ itemClassName(this.props.todo.done) }>
                 <div className='item__content'>
                     <span className='item__content__text'>
                         { this.props.todo.description }
                     </span>
                     <IconBtn clickHandler={ this._finishTodo.bind(this) }
-                        iconClass='ok'/>
+                        iconClass={ doneBtnClassName(this.props.todo.done) } />
                     <IconBtn clickHandler={ this._deleteTodo.bind(this) }
-                        iconClass='trash'/>
+                        iconClass='trash' />
                 </div>
             </div>
         );
