@@ -43,6 +43,11 @@ class TodoList extends React.Component
         return(
             <div className='row'>
                 <div className='col-md-12'>
+                    <div class="page-header">
+                        <h2>Completed: 0 <small>Total: 0</small></h2>
+                    </div>
+                </div>
+                <div className='col-md-12'>
                     { todoList }
                 </div>
                 <AddItemForm />
