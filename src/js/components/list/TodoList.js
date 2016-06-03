@@ -41,7 +41,9 @@ class TodoList extends React.Component
         });
         return(
             <div className='row'>
-                <div className='col-md-12'> {list} </div>
+                <div className='col-md-12'>
+                    { list }
+                </div>
                 <AddItemForm />
             </div>
         );
