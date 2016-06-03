@@ -13,10 +13,8 @@ class TodoList extends React.Component
 {
     constructor(props){
         super();
-        this._onListChange = this._onListChange.bind(this);
         this.state = _getList();
-
-        // Add change listeners
+        this._onListChange = this._onListChange.bind(this);
         TodoStore.addChangeListener(this._onListChange);
     }
 
@@ -27,7 +25,6 @@ class TodoList extends React.Component
     }
 
     componentWillUnmount(){
-        // Remove change listeners
         TodoStore.removeChangeListener(this._onListChange);
     }
 
