@@ -1,6 +1,6 @@
 export default{
     NEW_ITEM: 'NEW_ITEM',
     DELETE_ITEM: 'DELETE_ITEM',
-    FINISH_ITEM: 'FINISH_ITEM',
+    TOGGLE_ITEM: 'TOGGLE_ITEM',
     GET_ITEMS: 'GET_ITEMS'
 }

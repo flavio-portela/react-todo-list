@@ -46,7 +46,7 @@ class TodoStore extends EventEmitter{
             case TodoConstants.NEW_ITEM:
                 this._list.push(action.todo);
                 break;
-            case TodoConstants.FINISH_ITEM:
+            case TodoConstants.TOGGLE_ITEM:
                 _updateTodo(action.todo, this._list);
                 break;
             case TodoConstants.DELETE_ITEM:

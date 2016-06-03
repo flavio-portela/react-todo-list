@@ -32,7 +32,7 @@ exports.register = function( server, options, next )
         handler: (request, reply) => {
             Todo.findOne({ _id: request.payload._id }, (err, todo) => {
                 if(err) return console.log(err);
-                todo.done = request.payload.done;
+                todo.done = !todo.done;
                 todo.save((err, todo) => {
                     if(err) return console.log(err);
                     reply(todo);

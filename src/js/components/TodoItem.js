@@ -7,12 +7,8 @@ const classNames = require('classnames');
 class TodoItem extends React.Component
 {
     _finishTodo(){
-        // do not trigger action if item is already done
-        if(this.props.todo.done){
-            return;
-        }
-        console.log('Calling action finishTodo...');
-        TodoActions.finishTodo(this.props.todo._id);
+        console.log('Calling action toggleTodo...');
+        TodoActions.toggleTodo(this.props.todo._id);
     }
 
     _deleteTodo(){

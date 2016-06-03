@@ -49,13 +49,12 @@ export default{
 
     },
 
-    finishTodo(_id){
+    toggleTodo(_id){
         axios.patch('/api/todos', {
-            _id: _id,
-            done: true
+            _id: _id
         }).then((response) => {
             dispatch({
-                actionType: TodoConstants.FINISH_ITEM,
+                actionType: TodoConstants.TOGGLE_ITEM,
                 todo: response.data
             });
         }).catch((response) => {
