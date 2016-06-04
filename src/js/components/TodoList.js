@@ -14,18 +14,18 @@ const _getTodos = () => {
 
 const TodoList = (props) =>
 {
-        let todoList = props.todos.map( todo => {
-            return <TodoItem key={ todo._id } todo={ todo } />
-        });
-        return(
-            <div className='row'>
-                <TodosCounter todos={ props.todos } />
-                <div className='col-md-12'>
-                    { todoList }
-                </div>
-                <AddItemForm />
+    let todoList = props.todos.map( todo => {
+        return <TodoItem key={ todo._id } todo={ todo } />
+    });
+    return(
+        <div className='row'>
+            <TodosCounter todos={ props.todos } />
+            <div className='col-md-12'>
+                { todoList }
             </div>
-        );
+            <AddItemForm />
+        </div>
+    );
 }
 
 export default TodoStoreControllerView(TodoList, _getTodos);
