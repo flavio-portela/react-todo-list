@@ -13,7 +13,7 @@ export default ( InnerComponent, stateCallback ) => class extends React.Componen
 
     componentDidMount(){
         if(!this.state.todos.length){
-            console.log('Calling action getTodos...');
+            console.info('Calling action getTodos...');
             TodoActions.getTodos();
         }
     }
@@ -23,7 +23,7 @@ export default ( InnerComponent, stateCallback ) => class extends React.Componen
     }
 
     _onTodosChange(){
-        console.log('Updating state from view..');
+        console.info('Updating state from view..');
         this.setState( stateCallback( this.props ) );
     }
 

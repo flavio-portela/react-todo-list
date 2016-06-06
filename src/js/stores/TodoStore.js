@@ -40,7 +40,7 @@ class TodoStore extends EventEmitter{
 
     handleActions(action){
         let emitChange = () => {
-            console.log('Emit change event from Store...');
+            console.info('Emit change event from Store...');
             this.emit(CHANGE_EVENT)
         }
         switch(action.actionType){

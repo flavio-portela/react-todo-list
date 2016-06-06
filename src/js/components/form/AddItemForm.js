@@ -22,7 +22,7 @@ class AddItemForm extends React.Component{
             return;
         }
         // add new item
-        console.log('Calling action addTodo...');
+        console.info('Calling action addTodo...');
         TodoActions.addTodo(text);
         // clear form
         this.setState(_setText(''));

@@ -7,12 +7,12 @@ const classNames = require('classnames');
 class TodoItem extends React.Component
 {
     _finishTodo(){
-        console.log('Calling action toggleTodo...');
+        console.info('Calling action toggleTodo...');
         TodoActions.toggleTodo(this.props.todo._id);
     }
 
     _deleteTodo(){
-        console.log('Calling action deleteTodo...');
+        console.info('Calling action deleteTodo...');
         TodoActions.deleteTodo(this.props.todo._id);
     }
 
