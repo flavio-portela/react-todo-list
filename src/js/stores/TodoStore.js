@@ -39,22 +39,28 @@ class TodoStore extends EventEmitter{
     }
 
     handleActions(action){
+        let emitChange = () => {
+            console.log('Emit change event from Store...');
+            this.emit(CHANGE_EVENT)
+        }
         switch(action.actionType){
             case TodoConstants.GET_ITEMS:
                 this._list = action.todos;
+                emitChange();
                 break;
             case TodoConstants.NEW_ITEM:
                 this._list.push(action.todo);
+                emitChange();
                 break;
             case TodoConstants.TOGGLE_ITEM:
                 _updateTodo(action.todo, this._list);
+                emitChange();
                 break;
             case TodoConstants.DELETE_ITEM:
                 _deleteItem(action._id, this._list);
+                emitChange();
                 break;
         }
-        console.log('Emit change event from Store...');
-        this.emit(CHANGE_EVENT)
     }
 }
 
