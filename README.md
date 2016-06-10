@@ -22,7 +22,7 @@ After intallation is completed lets start the server:
 npm start
 ```
 
-You also need to generate the bundle with wepack:
+You also need to generate the bundle with webpack:
 ```sh
 npm run watch
 ```
